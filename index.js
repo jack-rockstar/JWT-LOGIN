@@ -33,11 +33,14 @@ mongoose.connect(uri,option)
 const authRouter= require('./router/auth')
 const validToken=require('./router/validate-token')
 const admin=require('./router/admin')
+const crud=require('./router/crud')
+
 
 
 //router middleware
 app.use('/api/user', authRouter)
 app.use('/api/admin',validToken,admin)
+app.use('/api/home', crud)
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
 app.use(history());
@@ -49,8 +52,10 @@ app.use(express.static(__dirname + "/public"));
     })
 }) */
 
+
 //iniciar servidor
 const PORT=process.env.PORT || 3001
 app.listen(PORT,()=>{
     console.log('servidor corriendo en:',PORT)
 })
+
