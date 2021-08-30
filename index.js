@@ -38,12 +38,16 @@ const admin=require('./router/admin')
 //router middleware
 app.use('/api/user', authRouter)
 app.use('/api/admin',validToken,admin)
-app.get('/', (req,res)=>{
+// Middleware para Vue.js router modo history
+const history = require('connect-history-api-fallback');
+app.use(history());
+app.use(express.static(__dirname + "/public"));
+/*app.get('/', (req,res)=>{
     res.json({
         estado:true,
         mensaje:'funciona!'
     })
-})
+}) */
 
 //iniciar servidor
 const PORT=process.env.PORT || 3001
