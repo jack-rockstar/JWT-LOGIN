@@ -7,24 +7,24 @@ const userSchema1=mongoose.Schema({
         min:2,
         max:200
     },
-    name1:{
+    marca:{
         type:String,
         required:true,
         min:2,
         max:200
     },
-    ability:{
-        type:String,
+    stock:{
+        type:Number,
         required:true,
-        min:5,
+        min:1,
         max:200
     },
-    roll:{
-        type:String,
+    precio:{
+        type:Number,
         required:true,
         min:3,
         max:400
     }
 })
 
-module.exports=mongoose.model('Dota',userSchema1)
+module.exports=mongoose.model('Articulo',userSchema1)

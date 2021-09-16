@@ -1,16 +1,16 @@
 const router=require('express').Router()
 
-const dota=require('../models/Dota')
+const producto=require('../models/Articulo')
 
 //leer datos de la base de datos
 router.get('/', async (req,res)=>{
     try {
-        const arrayDota= await dota.find()
+        const articulos= await producto.find()
         res.json({
             error:null,
             data:{
                 title:'Mis datos',
-                arrayDota
+                articulos
             }
         })
 
@@ -25,23 +25,23 @@ router.post('/', async (req,res)=>{
     const body=req.body
 
     try {
-        let heroedb=new dota(body)
-        await heroedb.save()
+        let articulo=new producto(body)
+        await articulo.save()
         res.json({
             error:null,
-            data:heroedb
+            data:articulo
         })
     } catch (error) {
         console.log(error)
     }
 })
 
-//sirve para eliminar el heroe
+//sirve para eliminar el articulo
 router.delete('/:id', async (req,res)=>{
     const id=req.params.id
     try {
-        let heroedb=await dota.findOneAndDelete({_id: id})
-        if(heroedb) res.json({error:null, mensaje:'heroe eliminado' })
+        let articulo=await producto.findOneAndDelete({_id: id})
+        if(articulo) res.json({error:null, mensaje:'articulo eliminado' })
         
     } catch (error) {
         console.log(error)
@@ -54,8 +54,8 @@ router.put('/:id', async (req,res)=>{
     const id=req.params.id
     const body=req.body
     try {
-        let heroedb=await dota.findByIdAndUpdate(id,body)
-        res.json({error:null, mensaje:'Heroe actualizado'})
+        let articulo=await producto.findByIdAndUpdate(id,body)
+        res.json({error:null, mensaje:'Articulo actualizado'})
     } catch (error) {
         console.log(error)
         res.json({error:true, mensaje:'No se encontro el id seleccionado'})
