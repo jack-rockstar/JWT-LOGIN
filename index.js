@@ -41,6 +41,7 @@ const crud=require('./router/crud')
 app.use('/api/user', authRouter)
 app.use('/api/admin',validToken,admin)
 app.use('/api/user/home', authRouter, validToken, crud)
+
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
 app.use(history());
